@@ -41,8 +41,11 @@
       flex-direction: column;
       z-index: 1000;
       transition: left 0.3s ease;
-      padding-top: 6rem; /* Space for menu button */
+      padding-top: 8rem; /* Space for menu button */
       justify-content: flex-start; /* Align menu options to the top */
+    }
+    .sidebar.dark-mode {
+      background-color: #2d3748;
     }
     .sidebar a {
       padding: 1rem;
@@ -169,6 +172,7 @@
     toggle.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent navigation
       document.body.classList.toggle('dark-mode');
+      document.querySelector('.sidebar').classList.toggle('dark-mode'); // Apply dark mode to sidebar
     });
 
     const menuBtn = document.querySelector('.menu-btn');
