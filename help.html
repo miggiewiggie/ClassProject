@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help - Study Group Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .dark-mode {
+      background-color: #1a202c;
+      color: white;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem;
+      background-color: #3182ce;
+      color: white;
+    }
+    header.dark-mode {
+      background-color: #2d3748;
+    }
+    nav {
+      position: relative;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+      transition: left 0.3s ease;
+      padding-top: 8rem;
+      justify-content: flex-start;
+    }
+    .sidebar.dark-mode {
+      background-color: #2d3748;
+    }
+    .sidebar a {
+      padding: 1rem;
+      text-decoration: none;
+      color: black;
+      display: block;
+      font-size: 1rem;
+    }
+    .sidebar a:hover {
+      background-color: #f1f1f1;
+    }
+    .sidebar.dark-mode a {
+      color: white;
+    }
+    .sidebar.dark-mode a:hover {
+      background-color: #4a5568;
+    }
+    .menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: white;
+      position: relative;
+      top: 0;
+      z-index: 1001;
+      transition: color 0.3s ease;
+    }
+    .menu-btn:hover {
+      text-decoration: underline;
+    }
+    .help-link {
+      margin-top: auto;
+      padding: 1rem;
+    }
+    main {
+      flex: 1;
+      padding: 2rem;
+      text-align: center;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #2d3748;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <button class="menu-btn" id="menuBtn">☰ Menu</button>
+      <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="#">Create Group</a>
+        <a href="#">Group Catalog</a>
+        <a href="#">Event Calendar</a>
+        <a href="about.html">About Us</a>
+        <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
+        <a href="help.html" class="help-link">Help</a>
+      </div>
+    </nav>
+    <h1>Help</h1>
+  </header>
+  <main>
+    <h2>How can we assist you?</h2>
+    <p>Here you can find answers to common questions and get help with using the Study Group Finder.</p>
+    <ul>
+      <li>How to create a study group?</li>
+      <li>How to join a study group?</li>
+      <li>Troubleshooting common issues.</li>
+      <li>Contact support.</li>
+    </ul>
+  </main>
+  <footer>
+    <p>&copy; 2025 Study Group Finder. All rights reserved.</p>
+  </footer>
+  <script>
+    const toggle = document.getElementById('darkModeToggle');
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    toggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      document.body.classList.toggle('dark-mode');
+      sidebar.classList.toggle('dark-mode');
+      updateMenuBtnColor();
+    });
+
+    menuBtn.addEventListener('click', () => {
+      toggleSidebar();
+    });
+
+    function toggleSidebar() {
+      const isOpen = sidebar.style.left === '0px';
+      sidebar.style.left = isOpen ? '-250px' : '0px';
+      overlay.classList.toggle('active-overlay', !isOpen);
+      updateMenuBtnColor();
+    }
+
+    function updateMenuBtnColor() {
+      if (sidebar.style.left === '0px' && document.body.classList.contains('dark-mode')) {
+        menuBtn.style.color = 'white';
+      } else if (sidebar.style.left === '0px') {
+        menuBtn.style.color = 'black';
+      } else {
+        menuBtn.style.color = 'white';
+      }
+    }
+  </script>
+</body>
+</html>
