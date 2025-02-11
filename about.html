@@ -123,4 +123,52 @@
     <h1>About Us</h1>
   </header>
   <main>
-    <h2>Meet the Team
+    <h2>Meet the Team</h2>
+    <ul class="members">
+      <li>Member 1</li>
+      <li>Member 2</li>
+      <li>Member 3</li>
+      <li>Member 4</li>
+      <li>Member 5</li>
+    </ul>
+    <p>Class: HCI</p>
+  </main>
+  <footer>
+    <p>&copy; 2025 Study Group Finder. All rights reserved.</p>
+  </footer>
+  <script>
+    const toggle = document.getElementById('darkModeToggle');
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    toggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      document.body.classList.toggle('dark-mode');
+      sidebar.classList.toggle('dark-mode');
+      updateMenuBtnColor();
+    });
+
+    menuBtn.addEventListener('click', () => {
+      toggleSidebar();
+    });
+
+    function toggleSidebar() {
+      const isOpen = sidebar.style.left === '0px';
+      sidebar.style.left = isOpen ? '-250px' : '0px';
+      overlay.classList.toggle('active-overlay', !isOpen);
+      updateMenuBtnColor();
+    }
+
+    function updateMenuBtnColor() {
+      if (sidebar.style.left === '0px' && document.body.classList.contains('dark-mode')) {
+        menuBtn.style.color = 'white';
+      } else if (sidebar.style.left === '0px') {
+        menuBtn.style.color = 'black';
+      } else {
+        menuBtn.style.color = 'white';
+      }
+    }
+  </script>
+</body>
+</html>
