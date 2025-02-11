@@ -23,10 +23,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.5rem; /* Thinner header */
+      padding: 0.5rem;
       background-color: #3182ce;
       color: white;
-      text-align: center;
     }
     header.dark-mode {
       background-color: #2d3748;
@@ -37,7 +36,7 @@
     .sidebar {
       position: fixed;
       top: 0;
-      left: -250px; /* Hidden by default */
+      left: -250px;
       width: 250px;
       height: 100%;
       background: white;
@@ -47,8 +46,8 @@
       flex-direction: column;
       z-index: 1000;
       transition: left 0.3s ease;
-      padding-top: 8rem; /* Space for menu button */
-      justify-content: flex-start; /* Align menu options to the top */
+      padding-top: 8rem;
+      justify-content: flex-start;
     }
     .sidebar.dark-mode {
       background-color: #2d3748;
@@ -74,14 +73,18 @@
       border: none;
       cursor: pointer;
       font-size: 1rem;
-      color: white; /* Ensure button is visible */
+      color: white;
       position: relative;
       top: 0;
-      z-index: 1001; /* Ensure button stays on top */
-      transition: color 0.3s ease; /* Transition for color change */
+      z-index: 1001;
+      transition: color 0.3s ease;
     }
     .menu-btn:hover {
       text-decoration: underline;
+    }
+    .help-link {
+      margin-top: auto;
+      padding: 1rem;
     }
     main {
       flex: 1;
@@ -114,32 +117,10 @@
         <a href="#">Event Calendar</a>
         <a href="about.html">About Us</a>
         <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
+        <a href="help.html" class="help-link">Help</a> <!-- New Help link -->
       </div>
     </nav>
     <h1>About Us</h1>
   </header>
   <main>
-    <h2>Meet the Team</h2>
-    <ul class="members">
-      <li>Member 1</li>
-      <li>Member 2</li>
-      <li>Member 3</li>
-      <li>Member 4</li>
-      <li>Member 5</li>
-    </ul>
-    <p>Class: HCI</p>
-  </main>
-  <footer>
-    <p>&copy; 2025 Study Group Finder. All rights reserved.</p>
-  </footer>
-  <script>
-    const toggle = document.getElementById('darkModeToggle');
-    const menuBtn = document.getElementById('menuBtn');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-
-    toggle.addEventListener('click', (event) => {
-      event.preventDefault(); // Prevent navigation
-      document.body.classList.toggle('dark-mode');
-      sidebar.classList.toggle('dark-mode'); // Apply dark mode to sidebar
-      updateMenu
+    <h2>Meet the Team
