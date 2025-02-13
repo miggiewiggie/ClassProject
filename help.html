@@ -128,12 +128,10 @@
     // Function to update menu button color based on dark mode state
     function updateMenuBtnColor() {
       const menuBtn = document.getElementById('menuBtn');
-      if (document.getElementById('sidebar').style.left === '0px' && document.body.classList.contains('dark-mode')) {
+      if (document.body.classList.contains('dark-mode')) {
         menuBtn.style.color = 'white';
-      } else if (document.getElementById('sidebar').style.left === '0px') {
-        menuBtn.style.color = 'black';
       } else {
-        menuBtn.style.color = 'white';
+        menuBtn.style.color = 'black';
       }
     }
   </script>
@@ -186,7 +184,7 @@
       const isOpen = sidebar.style.left === '0px';
       sidebar.style.left = isOpen ? '-250px' : '0px';
       overlay.classList.toggle('active-overlay', !isOpen);
-      updateMenuBtnColor(); // Update the menu button color
+      updateMenuBtnColor(); // Ensure menu button color is updated
     }
   </script>
 </body>
