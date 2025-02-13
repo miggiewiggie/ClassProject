@@ -98,6 +98,45 @@
       color: white;
     }
   </style>
+  <script>
+    // Function to apply dark mode
+    function applyDarkMode(isDarkMode) {
+      if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        document.getElementById('sidebar').classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+        document.getElementById('sidebar').classList.remove('dark-mode');
+      }
+      updateMenuBtnColor(); // Ensure menu button color is updated
+    }
+
+    // Check the saved dark mode preference and apply it
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+      applyDarkMode(isDarkMode);
+    });
+
+    // Function to toggle dark mode and save preference
+    function toggleDarkMode() {
+      const isDarkMode = document.body.classList.toggle('dark-mode');
+      document.getElementById('sidebar').classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', isDarkMode);
+      updateMenuBtnColor(); // Ensure menu button color is updated
+    }
+
+    // Function to update menu button color based on dark mode state
+    function updateMenuBtnColor() {
+      const menuBtn = document.getElementById('menuBtn');
+      if (document.getElementById('sidebar').style.left === '0px' && document.body.classList.contains('dark-mode')) {
+        menuBtn.style.color = 'white';
+      } else if (document.getElementById('sidebar').style.left === '0px') {
+        menuBtn.style.color = 'black';
+      } else {
+        menuBtn.style.color = 'white';
+      }
+    }
+  </script>
 </head>
 <body>
   <header>
@@ -110,7 +149,7 @@
         <a href="#">Event Calendar</a>
         <a href="about.html">About Us</a>
         <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
-        <a href="help.html" class="help-link">Help</a>
+        <a href="help.html">Help</a> <!-- Updated Help link -->
       </div>
     </nav>
     <h1>Help</h1>
@@ -136,9 +175,7 @@
 
     toggle.addEventListener('click', (event) => {
       event.preventDefault();
-      document.body.classList.toggle('dark-mode');
-      sidebar.classList.toggle('dark-mode');
-      updateMenuBtnColor();
+      toggleDarkMode(); // Use the new function
     });
 
     menuBtn.addEventListener('click', () => {
@@ -149,17 +186,7 @@
       const isOpen = sidebar.style.left === '0px';
       sidebar.style.left = isOpen ? '-250px' : '0px';
       overlay.classList.toggle('active-overlay', !isOpen);
-      updateMenuBtnColor();
-    }
-
-    function updateMenuBtnColor() {
-      if (sidebar.style.left === '0px' && document.body.classList.contains('dark-mode')) {
-        menuBtn.style.color = 'white';
-      } else if (sidebar.style.left === '0px') {
-        menuBtn.style.color = 'black';
-      } else {
-        menuBtn.style.color = 'white';
-      }
+      updateMenuBtnColor(); // Update the menu button color
     }
   </script>
 </body>
