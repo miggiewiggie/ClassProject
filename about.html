@@ -106,44 +106,42 @@
     }
   </style>
   <script>
-    // Function to apply dark mode
-    function applyDarkMode(isDarkMode) {
-      if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        document.getElementById('sidebar').classList.add('dark-mode');
-      } else {
-        document.body.classList.remove('dark-mode');
-        document.getElementById('sidebar').classList.remove('dark-mode');
-      }
-      updateMenuBtnColor(); // Ensure menu button color is updated
+  // Function to apply dark mode
+  function applyDarkMode(isDarkMode) {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+      document.getElementById('sidebar').classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+      document.getElementById('sidebar').classList.remove('dark-mode');
     }
+    updateMenuBtnColor(); // Ensure menu button color is updated
+  }
 
-    // Check the saved dark mode preference and apply it
-    document.addEventListener('DOMContentLoaded', () => {
-      const isDarkMode = localStorage.getItem('darkMode') === 'true';
-      applyDarkMode(isDarkMode);
-    });
+  // Check the saved dark mode preference and apply it
+  document.addEventListener('DOMContentLoaded', () => {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    applyDarkMode(isDarkMode);
+  });
 
-    // Function to toggle dark mode and save preference
-    function toggleDarkMode() {
-      const isDarkMode = document.body.classList.toggle('dark-mode');
-      document.getElementById('sidebar').classList.toggle('dark-mode');
-      localStorage.setItem('darkMode', isDarkMode);
-      updateMenuBtnColor(); // Ensure menu button color is updated
+  // Function to toggle dark mode and save preference
+  function toggleDarkMode() {
+    const isDarkMode = document.body.classList.toggle('dark-mode');
+    document.getElementById('sidebar').classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+    updateMenuBtnColor(); // Ensure menu button color is updated
+  }
+
+  // Function to update menu button color based on dark mode state
+  function updateMenuBtnColor() {
+    const menuBtn = document.getElementById('menuBtn');
+    if (document.body.classList.contains('dark-mode') && sidebar.style.left !== '-250px') {
+      menuBtn.style.color = 'white';
+    } else {
+      menuBtn.style.color = 'black';
     }
-
-    // Function to update menu button color based on dark mode state
-    function updateMenuBtnColor() {
-      const menuBtn = document.getElementById('menuBtn');
-      if (document.getElementById('sidebar').style.left === '0px' && document.body.classList.contains('dark-mode')) {
-        menuBtn.style.color = 'white';
-      } else if (document.getElementById('sidebar').style.left === '0px') {
-        menuBtn.style.color = 'black';
-      } else {
-        menuBtn.style.color = 'white';
-      }
-    }
-  </script>
+  }
+</script>
 </head>
 <body>
   <header>
