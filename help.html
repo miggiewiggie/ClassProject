@@ -104,19 +104,10 @@
       border-color: #4a5568;
     }
     
-    /* Profile Container & Notification */
+    /* Profile Container (Notification Bell + Login Button) */
     .profile-container {
       display: flex;
       align-items: center;
-    }
-    .profile-photo {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 0.5rem;
-      background-image: url('default-profile-photo.jpg');
-      background-size: cover;
-      background-position: center;
     }
     .notification-bell {
       font-size: 1.5rem;
@@ -127,12 +118,61 @@
     .dark-mode .notification-bell {
       color: lightgray;
     }
+    /* Login Button (User Profile Photo) */
+    .login-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-left: 1rem;
+      cursor: pointer;
+      object-fit: cover;
+    }
     
-    /* Main Content */
+    /* Main Content for FAQ */
     main {
       flex: 1;
       padding: 2rem;
       text-align: center;
+    }
+    .faq-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: left;
+    }
+    .faq-item {
+      border: 1px solid #cbd5e0;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .faq-question {
+      background: #f1f1f1;
+      padding: 1rem;
+      width: 100%;
+      text-align: left;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      outline: none;
+    }
+    .faq-question:hover {
+      background: #e2e2e2;
+    }
+    .faq-answer {
+      display: none;
+      padding: 1rem;
+      background: #fff;
+      border-top: 1px solid #cbd5e0;
+    }
+    /* Optional dark-mode styles for FAQ */
+    .dark-mode .faq-question {
+      background: #2d3748;
+      color: white;
+    }
+    .dark-mode .faq-answer {
+      background: #1a202c;
+      color: white;
+      border-top: 1px solid #4a5568;
     }
     
     /* Footer */
@@ -167,19 +207,6 @@
       updateMenuBtnColor();
     }
     
-    document.addEventListener('DOMContentLoaded', () => {
-      const isDarkMode = localStorage.getItem('darkMode') === 'true';
-      applyDarkMode(isDarkMode);
-    });
-    
-    // Toggle dark mode and update localStorage.
-    function toggleDarkMode() {
-      const isDark = document.body.classList.toggle('dark-mode');
-      document.getElementById('sidebar').classList.toggle('dark-mode');
-      localStorage.setItem('darkMode', isDark);
-      updateMenuBtnColor();
-    }
-    
     // Update the menu button color: white in dark mode; black otherwise.
     function updateMenuBtnColor() {
       const menuBtn = document.getElementById('menuBtn');
@@ -188,6 +215,44 @@
       } else {
         menuBtn.style.color = 'black';
       }
+    }
+    
+    // Function to update the login button image based on the user's profile photo.
+    function updateProfilePhoto() {
+      const userPhotoUrl = localStorage.getItem('userPhotoUrl');
+      const loginButtonImg = document.querySelector('.login-button');
+      
+      if (userPhotoUrl && userPhotoUrl.trim() !== "") {
+        loginButtonImg.src = userPhotoUrl;
+      } else {
+        loginButtonImg.src = "profile.png"; // Default image
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+      applyDarkMode(isDarkMode);
+      updateProfilePhoto(); // Update the login button photo on page load.
+      
+      // Setup FAQ accordion behavior
+      document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+          const answer = button.nextElementSibling;
+          if (answer.style.display === "block") {
+            answer.style.display = "none";
+          } else {
+            answer.style.display = "block";
+          }
+        });
+      });
+    });
+    
+    // Toggle dark mode and update localStorage.
+    function toggleDarkMode() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      document.getElementById('sidebar').classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', isDark);
+      updateMenuBtnColor();
     }
   </script>
 </head>
@@ -209,45 +274,71 @@
       <input type="text" placeholder="Search for classes..." />
     </div>
     <div class="profile-container">
-      <div class="profile-photo"></div>
       <span class="notification-bell">&#128276;</span>
+      <!-- Login Button showing user profile image -->
+      <a href="login.html">
+        <img src="profile.png" alt="Login" class="login-button" />
+      </a>
     </div>
   </header>
-
-  <!-- Overlay for sidebar -->
+  
+  <!-- Overlay for the sidebar -->
   <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
-
+  
   <main>
     <h1>Help</h1>
-    <h2>How can we assist you?</h2>
-    <p>Here you can find answers to common questions and get help with using the Study Group Finder.</p>
-    <ul>
-      <li>How to create a study group?</li>
-      <li>How to join a study group?</li>
-      <li>Troubleshooting common issues.</li>
-      <li>Contact support.</li>
-    </ul>
+    <div class="faq-container">
+      <!-- FAQ 1: Login Issues -->
+      <div class="faq-item">
+        <button class="faq-question">I can't log in. What should I do?</button>
+        <div class="faq-answer">
+          <p>If you’re having trouble logging in, please try resetting your password by clicking the "Forgot Password" link on the login page. If the issue persists, make sure your email is verified.</p>
+        </div>
+      </div>
+      <!-- FAQ 2: Password Reset -->
+      <div class="faq-item">
+        <button class="faq-question">How do I reset my password?</button>
+        <div class="faq-answer">
+          <p>To reset your password, click the "Forgot Password" link on the login page and follow the instructions. You will receive an email with a reset link. If you don't see the email in your inbox, be sure to check your spam folder.</p>
+        </div>
+      </div>
+      <!-- FAQ 3: Group Creation Issues -->
+      <div class="faq-item">
+        <button class="faq-question">I'm having trouble creating a group. What should I do?</button>
+        <div class="faq-answer">
+          <p>Ensure you have filled out all required fields when creating a group. If the problem persists, try refreshing the page or logging out and back in. If you continue to face issues, please let us know.</p>
+        </div>
+      </div>
+      <!-- FAQ 4: General Troubleshooting -->
+      <div class="faq-item">
+        <button class="faq-question">General troubleshooting tips</button>
+        <div class="faq-answer">
+          <p>Try clearing your browser's cache, ensuring your browser is up-to-date, or using a different browser if you experience display issues. Sometimes an internet connection reset helps as well.</p>
+        </div>
+      </div>
+    </div>
+    <p>If none of these solutions work for you, feel free to contact us at <a href="mailto:support@victorpena.xyz">support@victorpena.xyz</a>.</p>
   </main>
-
+  
   <footer>
     <p>&copy; 2025 Study Group Finder. All rights reserved.</p>
   </footer>
-
+  
   <script>
     const toggle = document.getElementById('darkModeToggle');
     const menuBtn = document.getElementById('menuBtn');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
-
+    
     toggle.addEventListener('click', (event) => {
       event.preventDefault();
       toggleDarkMode();
     });
-
+    
     menuBtn.addEventListener('click', () => {
       toggleSidebar();
     });
-
+    
     function toggleSidebar() {
       const isOpen = sidebar.style.left === '0px';
       sidebar.style.left = isOpen ? '-250px' : '0px';
