@@ -56,7 +56,7 @@
       width: 250px;
       height: 100%;
       background: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       border-radius: 0.25rem;
       display: flex;
       flex-direction: column;
@@ -71,7 +71,6 @@
       padding: 1rem;
       text-decoration: none;
       color: black;
-      display: block;
       font-size: 1rem;
     }
     .sidebar a:hover {
@@ -103,7 +102,7 @@
       border-color: #4a5568;
     }
     
-    /* Profile Container (Notification + Login Button) */
+    /* Profile Container */
     .profile-container {
       display: flex;
       align-items: center;
@@ -117,7 +116,6 @@
     .dark-mode .notification-bell {
       color: lightgray;
     }
-    /* Login Button (User Profile Photo) */
     .login-button {
       width: 40px;
       height: 40px;
@@ -129,26 +127,88 @@
     
     /* Main Content */
     main {
-      text-align: center;
-      padding: 2rem;
       flex: 1;
+      padding: 2rem;
+      text-align: left;
     }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .card {
-      background: white;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Center the main header */
+    main > h1 {
       text-align: center;
     }
-    .dark-mode .card {
-      background-color: #2d3748;
-      color: white;
+    
+    /* Main Content Flex Container */
+    .main-content-flex {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem;
+      align-items: flex-start;  /* Align columns to the top */
+    }
+    
+    /* Groups Column (Left) */
+    .groups-wrapper {
+      width: 350px;  /* Increase width for the groups column */
+    }
+    .groups-column {
+      border: 1px solid #cbd5e0;
+      border-radius: 5px;
+      padding: 1rem;
+      background: #f7f7f7;
+      text-align: left;
+    }
+    .dark-mode .groups-column {
+      background: #2d3748;
+      border-color: #4a5568;
+    }
+    .groups-column h2 {
+      margin-top: 0;
+    }
+    .groups-column ul {
+      list-style: disc;
+      margin-left: 1.5rem;
+    }
+    
+    /* Calendar Column (Right) */
+    .calendar-wrapper {
+      width: 350px;
+      margin-left: auto;
+    }
+    .calendar-widget {
+      border: 1px solid #cbd5e0;
+      border-radius: 5px;
+      background: #f7f7f7;
+      padding: 1rem;
+      text-align: center;
+    }
+    .dark-mode .calendar-widget {
+      background: #2d3748;
+      border-color: #4a5568;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .calendar-header button {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: inherit;
+    }
+    /* Calendar dates in a grid */
+    #dates {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.2rem;
+    }
+    .date {
+      text-align: center;
+      padding: 0.5rem;
+      border: 1px solid #e2e2e2;
+    }
+    .dark-mode .date {
+      border: 1px solid #4a5568;
     }
     
     /* Footer */
@@ -166,59 +226,114 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0,0,0,0.5);
       z-index: 999;
     }
   </style>
   <script>
-    // Apply dark mode based on stored preference.
+    // --- Dark Mode, Profile & Sidebar Functions ---
     function applyDarkMode(isDarkMode) {
       if (isDarkMode) {
-        document.body.classList.add('dark-mode');
-        document.getElementById('sidebar').classList.add('dark-mode');
+        document.body.classList.add("dark-mode");
+        document.getElementById("sidebar").classList.add("dark-mode");
       } else {
-        document.body.classList.remove('dark-mode');
-        document.getElementById('sidebar').classList.remove('dark-mode');
+        document.body.classList.remove("dark-mode");
+        document.getElementById("sidebar").classList.remove("dark-mode");
       }
       updateMenuBtnColor();
     }
     
-    // Update the menu button color: white in dark mode; black in light mode.
     function updateMenuBtnColor() {
-      const menuBtn = document.getElementById('menuBtn');
-      if (document.body.classList.contains('dark-mode')) {
-        menuBtn.style.color = 'white';
+      const menuBtn = document.getElementById("menuBtn");
+      if (document.body.classList.contains("dark-mode")) {
+        menuBtn.style.color = "white";
       } else {
-        menuBtn.style.color = 'black';
+        menuBtn.style.color = "black";
       }
     }
     
-    // Function to update the login button image.
     function updateProfilePhoto() {
-      // Retrieve the user's photo URL from local storage (if any)
-      const userPhotoUrl = localStorage.getItem('userPhotoUrl');
-      const loginButtonImg = document.querySelector('.login-button');
-      
+      const userPhotoUrl = localStorage.getItem("userPhotoUrl");
+      const loginButtonImg = document.querySelector(".login-button");
       if (userPhotoUrl && userPhotoUrl.trim() !== "") {
-        // If a user photo is available, update the login button image
         loginButtonImg.src = userPhotoUrl;
       } else {
-        // Otherwise, display the default image (profile.png).
-        loginButtonImg.src = "profile.png";
+        loginButtonImg.src = "profile.png"; // Default image
       }
     }
     
-    document.addEventListener('DOMContentLoaded', () => {
-      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    function updateJoinedGroups() {
+      const container = document.getElementById("joinedGroupsContainer");
+      let joinedGroups = localStorage.getItem("joinedGroups");
+      let groups = [];
+      if (joinedGroups) {
+        try {
+          groups = JSON.parse(joinedGroups);
+        } catch (e) {
+          groups = [];
+        }
+      }
+      if (groups.length === 0) {
+        container.innerHTML = "<p>No groups available.</p>";
+      } else {
+        let html = "<ul>";
+        groups.forEach(function(group) {
+          html += "<li>" + group + "</li>";
+        });
+        html += "</ul>";
+        container.innerHTML = html;
+      }
+    }
+    
+    // --- Calendar Widget Functions ---
+    let currentDate = new Date();
+    function renderCalendar() {
+      const monthYear = document.getElementById("month-year");
+      const datesContainer = document.getElementById("dates");
+      const month = currentDate.getMonth();
+      const year = currentDate.getFullYear();
+      monthYear.textContent = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(currentDate);
+      datesContainer.innerHTML = "";
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      for (let i = 0; i < firstDay; i++) {
+          datesContainer.innerHTML += "<div class='date'></div>";
+      }
+      for (let i = 1; i <= daysInMonth; i++) {
+          datesContainer.innerHTML += `<div class='date'><span>${i}</span></div>`;
+      }
+    }
+    function prevMonth() {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar();
+    }
+    function nextMonth() {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar();
+    }
+    
+    // --- Initialization ---
+    document.addEventListener("DOMContentLoaded", () => {
+      const isDarkMode = localStorage.getItem("darkMode") === "true";
       applyDarkMode(isDarkMode);
-      updateProfilePhoto(); // Update the login photo on page load.
+      updateProfilePhoto();
+      updateJoinedGroups();
+      renderCalendar();
     });
     
-    // Toggle dark mode and update localStorage.
     function toggleDarkMode() {
-      const isDark = document.body.classList.toggle('dark-mode');
-      document.getElementById('sidebar').classList.toggle('dark-mode');
-      localStorage.setItem('darkMode', isDark);
+      const isDark = document.body.classList.toggle("dark-mode");
+      document.getElementById("sidebar").classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", isDark);
+      updateMenuBtnColor();
+    }
+    
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      const isOpen = sidebar.style.left === "0px";
+      sidebar.style.left = isOpen ? "-250px" : "0px";
+      overlay.classList.toggle("active-overlay", !isOpen);
       updateMenuBtnColor();
     }
   </script>
@@ -242,41 +357,37 @@
     </div>
     <div class="profile-container">
       <span class="notification-bell">&#128276;</span>
-      <!-- Login Button (User Profile Photo) -->
       <a href="login.html">
         <img src="profile.png" alt="Login" class="login-button" />
       </a>
     </div>
   </header>
   
-  <!-- Overlay for sidebar -->
+  <!-- Overlay for Sidebar -->
   <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
   
   <main>
-    <h2>Find or Create Your Perfect Study Group</h2>
-    <p>
-      Connect with fellow students to enhance your learning experience.
-      Create or join public and private study groups tailored to your courses or interests.
-    </p>
-    <div class="cards">
-      <div class="card">
-        <h3>Create or Join Groups</h3>
-        <p>
-          Find study groups based on your classes or interests.
-          Create private or public groups effortlessly.
-        </p>
+    <h1>Find or Create Your Perfect Study Group</h1>
+    <div class="main-content-flex">
+      <!-- Left Column: Groups -->
+      <div class="groups-wrapper">
+        <div class="groups-column">
+          <h2>My Groups</h2>
+          <div id="joinedGroupsContainer">
+            <!-- Dynamically populated; displays "No groups available." if none -->
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Online Communication</h3>
-        <p>
-          Stay connected with group members via built-in chat rooms for seamless collaboration.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Interactive Map</h3>
-        <p>
-          Locate group events with ease and RSVP to get reminders for in-person meetups.
-        </p>
+      <!-- Right Column: Calendar Widget -->
+      <div class="calendar-wrapper">
+        <div class="calendar-widget">
+          <div class="calendar-header">
+            <button onclick="prevMonth()">&#8249;</button>
+            <span id="month-year"></span>
+            <button onclick="nextMonth()">&#8250;</button>
+          </div>
+          <div id="dates" class="calendar-body"></div>
+        </div>
       </div>
     </div>
   </main>
@@ -286,26 +397,19 @@
   </footer>
   
   <script>
-    const toggle = document.getElementById('darkModeToggle');
-    const menuBtn = document.getElementById('menuBtn');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-  
-    toggle.addEventListener('click', (event) => {
+    const toggle = document.getElementById("darkModeToggle");
+    const menuBtn = document.getElementById("menuBtn");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    
+    toggle.addEventListener("click", (event) => {
       event.preventDefault();
       toggleDarkMode();
     });
-  
-    menuBtn.addEventListener('click', () => {
+    
+    menuBtn.addEventListener("click", () => {
       toggleSidebar();
     });
-  
-    function toggleSidebar() {
-      const isOpen = sidebar.style.left === '0px';
-      sidebar.style.left = isOpen ? '-250px' : '0px';
-      overlay.classList.toggle('active-overlay', !isOpen);
-      updateMenuBtnColor();
-    }
   </script>
 </body>
 </html>
