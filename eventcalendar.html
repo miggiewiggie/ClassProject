@@ -230,6 +230,17 @@
             updateMenuBtnColor(); // Ensure menu button color is updated
         }
 
+         function updateProfilePhoto() {
+          const userPhotoUrl = localStorage.getItem('userPhotoUrl');
+          const loginButtonImg = document.querySelector('.login-button');
+          
+          if (userPhotoUrl && userPhotoUrl.trim() !== "") {
+            loginButtonImg.src = userPhotoUrl;
+          } else {
+            loginButtonImg.src = "profile.png"; // Default image
+          }
+        }
+
         // Function to update menu button color based on dark mode state
         function updateMenuBtnColor() {
             const menuBtn = document.getElementById('menuBtn');
