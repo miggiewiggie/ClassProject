@@ -83,6 +83,11 @@
             margin-top: auto;
             padding: 1rem;
         }
+        .search-bar {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
         .calendar {
             width: 600px;
             margin: 20px auto;
@@ -278,7 +283,6 @@
             </a>
         </div>
     </header>
-    <h1>Event Calendar</h1>
     <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
     <div class="calendar">
     <div class="calendar-header">
@@ -291,6 +295,9 @@
     </div>
     <div class="dates" id="dates"></div>
     </div>
+    <main>
+        <h1>Event Calendar</h1>
+    </main>
     <footer>
         <p>&copy; 2025 Study Group Finder. All rights reserved.</p>
     </footer>
