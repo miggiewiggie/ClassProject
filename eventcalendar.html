@@ -88,6 +88,14 @@
           left: 50%;
           transform: translateX(-50%);
         }
+        .login-button {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin-left: 1rem;
+          cursor: pointer;
+          object-fit: cover;
+        }
         .calendar {
             width: 600px;
             margin: 20px auto;
@@ -283,6 +291,9 @@
             </a>
         </div>
     </header>
+    <main>
+        <h1>Event Calendar</h1>
+    </main>
     <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
     <div class="calendar">
     <div class="calendar-header">
@@ -295,9 +306,7 @@
     </div>
     <div class="dates" id="dates"></div>
     </div>
-    <main>
-        <h1>Event Calendar</h1>
-    </main>
+    
     <footer>
         <p>&copy; 2025 Study Group Finder. All rights reserved.</p>
     </footer>
