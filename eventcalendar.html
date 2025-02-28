@@ -18,6 +18,7 @@
             color: white;
         }
         header {
+            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -70,9 +71,7 @@
             border: none;
             cursor: pointer;
             font-size: 1.75rem;
-            color: white;
             position: relative;
-            top: 0;
             z-index: 1001;
             transition: color 0.3s ease;
         }
@@ -303,10 +302,12 @@
             </a>
         </div>
     </header>
+
+    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
     <main>
         <h1>Event Calendar</h1>
     </main>
-    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
     <div class="calendar">
     <div class="calendar-header">
         <button onclick="prevMonth()">&#9664;</button>
