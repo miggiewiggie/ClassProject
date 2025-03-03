@@ -267,14 +267,12 @@
 
         // Function to update menu button color based on dark mode state
         function updateMenuBtnColor() {
-            const menuBtn = document.getElementById('menuBtn');
-            if (document.getElementById('sidebar').style.left === '0px' && document.body.classList.contains('dark-mode')) {
-                menuBtn.style.color = 'white';
-            } else if (document.getElementById('sidebar').style.left === '0px') {
-                menuBtn.style.color = 'black';
-            } else {
-                menuBtn.style.color = 'white';
-            }
+          const menuBtn = document.getElementById('menuBtn');
+          if (document.body.classList.contains('dark-mode')) {
+            menuBtn.style.color = 'white';
+          } else {
+            menuBtn.style.color = 'black';
+          }
         }
     </script>
 </head>
