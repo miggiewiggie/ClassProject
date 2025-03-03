@@ -31,6 +31,18 @@
         nav {
             position: relative;
         }
+        .menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.75rem;
+            position: relative;
+            z-index: 1001;
+            transition: color 0.3s ease;
+        }
+        .menu-btn:hover {
+            text-decoration: underline;
+        }
         .sidebar {
             position: fixed;
             top: 0;
@@ -65,18 +77,6 @@
         }
         .sidebar.dark-mode a:hover {
             background-color: #4a5568;
-        }
-        .menu-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.75rem;
-            position: relative;
-            z-index: 1001;
-            transition: color 0.3s ease;
-        }
-        .menu-btn:hover {
-            text-decoration: underline;
         }
         .help-link {
             margin-top: auto;
