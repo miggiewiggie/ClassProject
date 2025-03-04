@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Group - Study Group Finder</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: white;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #1a202c;
+      color: white;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem;
+      background-color: transparent;
+      color: white;
+    }
+    header.dark-mode {
+      background-color: transparent;
+    }
+    nav {
+      position: relative;
+    }
+    .menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.75rem;
+      z-index: 1001;
+      transition: color 0.3s ease;
+    }
+    .menu-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* Sidebar Menu */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+      transition: left 0.3s ease;
+      padding-top: 8rem;
+    }
+    .sidebar.dark-mode {
+      background-color: #2d3748;
+    }
+    .sidebar a {
+      padding: 1rem;
+      text-decoration: none;
+      color: black;
+      display: block;
+      font-size: 1rem;
+    }
+    .sidebar a:hover {
+      background-color: #f1f1f1;
+    }
+    .sidebar.dark-mode a {
+      color: white;
+    }
+    .sidebar.dark-mode a:hover {
+      background-color: #4a5568;
+    }
+
+    /* Create Group Container */
+    .create-group-container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 0.25rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      margin: 5rem auto;
+    }
+    .create-group-container.dark-mode {
+      background-color: #2d3748;
+    }
+    .create-group-container input, .create-group-container select {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 0.25rem;
+    }
+    .create-group-container button {
+      width: 100%;
+      padding: 0.5rem;
+      background-color: #3182ce;
+      color: white;
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .create-group-container button:hover {
+      background-color: #2c5282;
+    }
+
+    /* Profile Container */
+    .profile-container {
+      display: flex;
+      align-items: center;
+    }
+    .notification-bell {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: gray;
+      transition: color 0.3s ease;
+    }
+    .dark-mode .notification-bell {
+      color: lightgray;
+    }
+    .login-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-left: 1rem;
+      cursor: pointer;
+      object-fit: cover;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #2d3748;
+      color: white;
+      margin-top: auto;
+    }
+
+    /* Overlay for Sidebar */
+    .overlay.active-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+  </style>
+  <script>
+    // Apply dark mode based on stored preference.
+    function applyDarkMode(isDarkMode) {
+      if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        document.getElementById('sidebar').classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+        document.getElementById('sidebar').classList.remove('dark-mode');
+      }
+      updateMenuBtnColor();
+    }
+
+    // Update the menu button color: white in dark mode; black otherwise.
+    function updateMenuBtnColor() {
+      const menuBtn = document.getElementById('menuBtn');
+      if (document.body.classList.contains('dark-mode')) {
+        menuBtn.style.color = 'white';
+      } else {
+        menuBtn.style.color = 'black';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+      applyDarkMode(isDarkMode);
+    });
+
+    // Toggle dark mode and update localStorage.
+    function toggleDarkMode() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      document.getElementById('sidebar').classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', isDark);
+      updateMenuBtnColor();
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      const isOpen = sidebar.style.left === '0px';
+      sidebar.style.left = isOpen ? '-250px' : '0px';
+      overlay.classList.toggle('active-overlay', !isOpen);
+      updateMenuBtnColor();
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="#">Create Group</a>
+        <a href="#">Group Catalog</a>
+        <a href="eventcalendar.html">Event Calendar</a>
+        <a href="about.html">About Us</a>
+        <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
+        <a href="help.html">Help</a>
+      </div>
+    </nav>
+    <div class="profile-container">
+      <span class="notification-bell">&#128276;</span>
+      <!-- Login Button showing user profile image -->
+      <a href="login.html">
+        <img src="profile.png" alt="Login" class="login-button" />
+      </a>
+    </div>
+  </header>
+
+  <!-- Overlay for the sidebar -->
+  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="create-group-container" id="createGroupContainer">
+    <h2>Create Group</h2>
+    <form>
+      <input type="text" placeholder="Group Name" required>
+      <input type="text" placeholder="Course" required>
+      <input type="text" placeholder="Related Keywords" required>
+      <input type="text" placeholder="Term and School Year" required>
+      <button type="submit">Create Group</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Study Group Finder. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('darkModeToggle');
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const createGroupContainer = document.getElementById('createGroupContainer');
+
+    toggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      toggleDarkMode();
+    });
+
+    menuBtn.addEventListener('click', () => {
+      toggleSidebar();
+    });
+  </script>
+</body>
+</html>
