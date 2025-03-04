@@ -11,6 +11,7 @@
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
+      align-items: center;
       min-height: 100vh;
       background-color: white;
       color: #333;
@@ -23,6 +24,7 @@
 
     /* Header & Navigation */
     header {
+      width: 100%;
       position: relative;
       display: flex;
       align-items: center;
@@ -85,37 +87,53 @@
       background-color: #4a5568;
     }
 
-    /* Create Group Container */
-    .create-group-container {
-      background-color: white;
-      padding: 2rem;
+    /* Centered Search Bar */
+    .search-bar {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    input {
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid #cbd5e0;
       border-radius: 0.25rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .dark-mode input {
+      background-color: #2d3748;
+      color: white;
+      border-color: #4a5568;
+    }
+
+    /* Create Group Form */
+    .create-group-form {
       max-width: 600px;
       width: 100%;
       margin: 5rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 2rem;
     }
-    .create-group-container.dark-mode {
-      background-color: #2d3748;
-    }
-    .create-group-container input, .create-group-container select {
+    .create-group-form input, .create-group-form select, .create-group-form button {
       width: 100%;
+      max-width: 300px;
       padding: 0.5rem;
       margin: 0.5rem 0;
       border: 1px solid #ccc;
       border-radius: 0.25rem;
+      background-color: inherit;
+      color: inherit;
     }
-    .create-group-container button {
-      width: 100%;
-      padding: 0.5rem;
+    .create-group-form button {
       background-color: #3182ce;
       color: white;
       border: none;
-      border-radius: 0.25rem;
       cursor: pointer;
       font-size: 1rem;
     }
-    .create-group-container button:hover {
+    .create-group-form button:hover {
       background-color: #2c5282;
     }
 
@@ -149,6 +167,7 @@
       background-color: #2d3748;
       color: white;
       margin-top: auto;
+      width: 100%;
     }
 
     /* Overlay for Sidebar */
@@ -168,9 +187,11 @@
       if (isDarkMode) {
         document.body.classList.add('dark-mode');
         document.getElementById('sidebar').classList.add('dark-mode');
+        document.getElementById('createGroupForm').classList.add('dark-mode');
       } else {
         document.body.classList.remove('dark-mode');
         document.getElementById('sidebar').classList.remove('dark-mode');
+        document.getElementById('createGroupForm').classList.remove('dark-mode');
       }
       updateMenuBtnColor();
     }
@@ -194,6 +215,7 @@
     function toggleDarkMode() {
       const isDark = document.body.classList.toggle('dark-mode');
       document.getElementById('sidebar').classList.toggle('dark-mode');
+      document.getElementById('createGroupForm').classList.toggle('dark-mode');
       localStorage.setItem('darkMode', isDark);
       updateMenuBtnColor();
     }
@@ -214,14 +236,17 @@
       <button class="menu-btn" id="menuBtn">☰</button>
       <div class="sidebar" id="sidebar">
         <a href="index.html">Home</a>
-        <a href="#">Create Group</a>
-        <a href="#">Group Catalog</a>
+        <a href="creategroup.html">Create Group</a>
+        <a href="groupcatalog.html">Group Catalog</a>
         <a href="eventcalendar.html">Event Calendar</a>
         <a href="about.html">About Us</a>
         <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
         <a href="help.html">Help</a>
       </div>
     </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for classes..." />
+    </div>
     <div class="profile-container">
       <span class="notification-bell">&#128276;</span>
       <!-- Login Button showing user profile image -->
@@ -234,7 +259,7 @@
   <!-- Overlay for the sidebar -->
   <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
 
-  <div class="create-group-container" id="createGroupContainer">
+  <div class="create-group-form" id="createGroupForm">
     <h2>Create Group</h2>
     <form>
       <input type="text" placeholder="Group Name" required>
@@ -254,7 +279,7 @@
     const menuBtn = document.getElementById('menuBtn');
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('overlay');
-    const createGroupContainer = document.getElementById('createGroupContainer');
+    const createGroupForm = document.getElementById('createGroupForm');
 
     toggle.addEventListener('click', (event) => {
       event.preventDefault();
