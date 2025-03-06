@@ -209,13 +209,21 @@
       margin-top: 0;
     }
     .filters {
-      width: 30%; /* Set the width of the filters column */
+      width: 25%; /* Set the width of the filters column */
       border-right: 1px solid #e2e2e2;
       padding-right: 1rem;
+    }
+    .filters label {
+      display: block;
+      margin-top: .5rem;
+    }
+    .filters input {
+      width: 100%;
     }
     .dark-mode .filters {
       border-right: 1px solid #4a5568;
     }
+
     .groups-list {
       width: 70%; /* Set the width of the groups list column */
       padding-left: 1rem;
@@ -230,7 +238,52 @@
     .group:last-child {
       border-bottom: none;
     }
-    
+    /* Group Block Styling */
+    .group {
+      background: #ececec; /* Light grey background for contrast */
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 1rem; /* Space between group blocks */
+      transition: background-color 0.3s;
+    }
+
+    /* Dark Mode Styling */
+    .dark-mode .group {
+      background: #3b3b3b;
+    }
+
+    /* Hover effect for Group Block */
+    .group:hover {
+      background: #dddddd; /* Slightly darker shade on hover */
+    }
+
+    .dark-mode .group:hover {
+      background: #4a4a4a;
+    }
+    /* Clickable Group Name */
+    .group h3 {
+      color: #0073e6;
+      cursor: pointer;
+      transition: color 0.3s;
+      font-size: 1.5rem;
+      margin-top: 0; /* Removes any default margin */
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+
+    .group h3:hover {
+      color: #004a99; /* Darker blue on hover */
+      text-decoration: underline;
+    }
+
+    /* Dark Mode Clickable Name */
+    .dark-mode .group h3 {
+      color: #63b3ed;
+    }
+
+    .dark-mode .group h3:hover {
+      color: #3182ce;
+    }
     /* Footer */
     footer {
       text-align: center;
@@ -378,24 +431,30 @@
             <label for="filter-name">Filter by Name:</label>
             <input type="text" id="filter-name" placeholder="Group Name" />
             <br />
+            <label for="filter-tag">Filter by Tag:</label>
+            <input type="text" id="filter-tag" placeholder="Group Tag" />
+            <br />
             <label for="filter-size">Filter by Size:</label>
             <input type="number" id="filter-size" placeholder="Number of Students" />
           </div>
           <div class="groups-list">
             <h2>Available Groups</h2>
             <div class="group">
-              <h3>Group 1</h3>
-              <p>Students Registered: 0</p>
+              <h3 onclick="window.location.href='group1.html'">Group 1</h3>
+              <p>Tag: Example Tag</p>
+              <p>Members: 0</p>
               <p>Description: Placeholder description for Group 1.</p>
             </div>
             <div class="group">
-              <h3>Group 2</h3>
-              <p>Students Registered: 0</p>
+              <h3 onclick="window.location.href='group2.html'">Group 2</h3>
+              <p>Tag: Example Tag</p>
+              <p>Members: 0</p>
               <p>Description: Placeholder description for Group 2.</p>
             </div>
             <div class="group">
-              <h3>Group 3</h3>
-              <p>Students Registered: 0</p>
+              <h3 onclick="window.location.href='group3.html'">Group 3</h3>
+              <p>Tag: Example Tag</p>
+              <p>Members: 0</p>
               <p>Description: Placeholder description for Group 3.</p>
             </div>
           </div>
