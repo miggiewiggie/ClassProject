@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group Home Page - Study Group Finder</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .dark-mode {
+      background-color: #1a202c;
+      color: white;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem;
+      background-color: transparent; /* Transparent header */
+      color: white;
+    }
+    header.dark-mode {
+      background-color: transparent;
+    }
+    nav {
+      position: relative;
+    }
+    .menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.75rem; /* Larger icon */
+      z-index: 1001;
+      transition: color 0.3s ease;
+    }
+    .menu-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* Sidebar Menu */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px; /* Hidden by default */
+      width: 250px;
+      height: 100%;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+      transition: left 0.3s ease;
+      padding-top: 8rem;
+    }
+    .sidebar.dark-mode {
+      background-color: #2d3748;
+    }
+    .sidebar a {
+      padding: 1rem;
+      text-decoration: none;
+      color: black;
+      font-size: 1rem;
+    }
+    .sidebar a:hover {
+      background-color: #f1f1f1;
+    }
+    .sidebar.dark-mode a {
+      color: white;
+    }
+    .sidebar.dark-mode a:hover {
+      background-color: #4a5568;
+    }
+
+    /* Overlay for Sidebar */
+    .overlay.active-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    /* Group Info Section */
+    .group-info {
+      background: white;
+      border: 1px solid #cbd5e0;
+      border-radius: 5px;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: left;
+    }
+    .dark-mode .group-info {
+      background: #2d3748;
+      border-color: #4a5568;
+    }
+    .group-info h1 {
+      margin-top: 0;
+    }
+    .group-info p {
+      margin: 0.5rem 0;
+    }
+
+    /* Join/Leave Button */
+    .join-leave-button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .join-leave-button.join {
+      background-color: #3182ce; /* Blue for Join */
+      color: white;
+    }
+    .join-leave-button.leave {
+      background-color: #f56565; /* Red for Leave */
+      color: white;
+    }
+    .join-leave-button:hover {
+      opacity: 0.9;
+    }
+
+    /* Resources Section */
+    .resources {
+      background: white;
+      border: 1px solid #cbd5e0;
+      border-radius: 5px;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: left;
+    }
+    .dark-mode .resources {
+      background: #2d3748;
+      border-color: #4a5568;
+    }
+    .resources h2 {
+      margin-top: 0;
+    }
+    .resources ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .resources ul li {
+      margin: 0.5rem 0;
+    }
+    .resources ul li a {
+      color: #0073e6;
+      text-decoration: none;
+    }
+    .resources ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* YouTube Playlist Section */
+    .youtube-playlists {
+      margin-top: 2rem;
+    }
+    .youtube-playlists h3 {
+      margin-top: 0;
+    }
+    .youtube-playlists iframe {
+      width: 100%;
+      height: 315px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+
+    /* Campus Resources Section */
+    .campus-resources {
+      margin-top: 2rem;
+    }
+    .campus-resources h3 {
+      margin-top: 0;
+    }
+    .campus-resources a {
+      color: #0073e6;
+      text-decoration: none;
+    }
+    .campus-resources a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #2d3748;
+      color: white;
+    }
+
+    /* Profile Container */
+    .profile-container {
+      display: flex;
+      align-items: center;
+    }
+    .notification-bell {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: gray;
+      transition: color 0.3s ease;
+    }
+    .dark-mode .notification-bell {
+      color: lightgray;
+    }
+    .login-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-left: 1rem;
+      cursor: pointer;
+      object-fit: cover;
+    }
+  </style>
+  <script>
+    function applyDarkMode(isDarkMode) {
+      if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        document.getElementById('sidebar').classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+        document.getElementById('sidebar').classList.remove('dark-mode');
+      }
+      updateMenuBtnColor();
+    }
+
+    function updateMenuBtnColor() {
+      const menuBtn = document.getElementById('menuBtn');
+      if (document.body.classList.contains('dark-mode')) {
+        menuBtn.style.color = 'white';
+      } else {
+        menuBtn.style.color = 'black';
+      }
+    }
+
+    function toggleMembership() {
+      const isMember = localStorage.getItem('isMember') === 'true';
+      localStorage.setItem('isMember', !isMember);
+      updateButton();
+    }
+
+    function updateButton() {
+      const isMember = localStorage.getItem('isMember') === 'true';
+      const button = document.getElementById('joinLeaveButton');
+      if (isMember) {
+        button.textContent = 'Leave Group';
+        button.classList.remove('join');
+        button.classList.add('leave');
+      } else {
+        button.textContent = 'Join Group';
+        button.classList.remove('leave');
+        button.classList.add('join');
+      }
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      const isOpen = sidebar.style.left === '0px';
+      sidebar.style.left = isOpen ? '-250px' : '0px';
+      overlay.classList.toggle('active-overlay', !isOpen);
+      updateMenuBtnColor();
+    }
+
+    function toggleDarkMode() {
+      const isDarkMode = document.body.classList.toggle('dark-mode');
+      document.getElementById('sidebar').classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', isDarkMode);
+      updateMenuBtnColor();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const isDarkMode = localStorage.getItem('darkMode') === 'true';
+      applyDarkMode(isDarkMode);
+      updateButton();
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <button class="menu-btn" id="menuBtn" onclick="toggleSidebar()">☰</button>
+      <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="creategroup.html">Create Group</a>
+        <a href="groupcatalog.html">Group Catalog</a>
+        <a href="eventcalendar.html">Event Calendar</a>
+        <a href="about.html">About Us</a>
+        <a href="#" id="darkModeToggle" onclick="toggleDarkMode()">Dark Mode / Light Mode</a>
+        <a href="help.html">Help</a>
+      </div>
+    </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for classes..." />
+    </div>
+    <div class="profile-container">
+      <span class="notification-bell">&#128276;</span>
+      <a href="login.html">
+        <img src="profile.png" alt="Login" class="login-button" />
+      </a>
+    </div>
+  </header>
+
+  <!-- Overlay for Sidebar -->
+  <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+  <main>
+    <!-- Group Info Section -->
+    <div class="group-info">
+      <h1>Group 1</h1>
+      <p>Tag: Example Tag</p>
+      <p>Members: 10</p>
+      <p>Description: This is a placeholder description for Group 1. It provides some information about the group's purpose and activities.</p>
+      <button id="joinLeaveButton" class="join-leave-button join" onclick="toggleMembership()">Join Group</button>
+    </div>
+
+    <!-- Resources Section -->
+    <div class="resources">
+      <h2>Resources</h2>
+      <ul>
+        <li><a href="#">Study Guide for Exam 1</a></li>
+        <li><a href="#">Lecture Notes - Week 3</a></li>
+        <li><a href="#">Practice Problems - Chapter 5</a></li>
+        <li><a href="#">Group Project Guidelines</a></li>
+      </ul>
+
+      <!-- YouTube Playlists Section -->
+      <div class="youtube-playlists">
+        <h3>YouTube Playlists</h3>
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=PLWKjhJtqVAbnZtkAI3BqcYxKnfWn_C704"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=PLWKjhJtqVAbnZtkAI3BqcYxKnfWn_C705"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Campus Resources Section -->
+      <div class="campus-resources">
+        <h3>Campus Resources</h3>
+        <p>
+          For academic advising related to this group's major, visit the
+          <a href="https://www.ucf.edu/academics/advising/" target="_blank">UCF Academic Advising</a> page.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Study Group Finder. All rights reserved.</p>
+  </footer>
+</body>
+</html>
