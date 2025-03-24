@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Science at UCF</title>
+  <style>
+    /* Default Light Mode Styles */
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    .dark-mode{
+      background-color: #1a202c;
+      color: white;
+    }
+    h1, h2, h3 {
+      color: #000000;
+    }
+    /* Centering the table */
+    table {
+      width: 60%; /* Adjust width as needed */
+      margin: auto; /* Centers the table */
+      border-collapse: collapse; /* Ensures a clean look */
+      text-align: center; /* Centers text in table */
+    }
+    /* Styling table cells */
+    td {
+      border: 1px solid black;
+      padding: 20px; /* Adds spacing inside cells */
+      vertical-align: top; /* Aligns content to the top */
+    }
+    /* Header Section with Blue Background */
+    header {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      background-color: #007bff; /* Blue background */
+      color: #ffffff;
+      padding: 10px 20px;
+      align-items: center;
+      width: 100%;
+    }
+    nav {
+      position: absolute;
+      left: 50px;
+    }
+
+    .title-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+    p {
+      width: 100%;
+      margin: 5px 0;
+    }
+    .menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.75rem;
+      position: relative;
+      z-index: 1001;
+      color: black;
+      transition: color 0.3s ease;
+    }
+    .dark-mode .menu-btn {
+      color: white;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      padding-top: 8rem;
+      transition: left 0.3s ease, background-color 0.3s ease;
+    }
+    .dark-mode .sidebar {
+      background: #2d3748;
+    }
+    .sidebar a {
+      padding: 1rem;
+      text-decoration: none;
+      color: black;
+      font-size: 1rem;
+    }
+    .dark-mode .sidebar a {
+      color: white;
+    }
+    .sidebar a:hover {
+      background-color: #f1f1f1;
+    }
+    .dark-mode .sidebar a:hover {
+      background-color: #4a5568;
+    }
+
+    main {
+      padding: 20px;
+      width: 80%;
+      max-width: 1000px;
+      text-align: center;
+    }
+
+    a {
+      color: #1e90ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Dark Mode Styles */
+
+    body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
+      color: #ffffff; /* Change header titles to white in dark mode */
+    }
+
+    footer {
+      background-color: #007bff;
+      color: #000000;
+      padding: 10px 20px;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Section Styles */
+    section {
+      margin-bottom: 40px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    .class {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body onload="applyDarkMode(localStorage.getItem('darkMode') === 'true')" onclick="closeMenu(event)">
+<!-- Header Section -->
+<header class="header">
+  <nav>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <div class="sidebar" id="sidebar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="help.html">Help</a>
+      <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
+    </div>
+  </nav>
+  <div class="title-container">
+    <h1>Computer Science at UCF</h1>
+    <p>Explore the Computer Science program at the University of Central Florida.</p>
+  </div>
+
+</header>
+
+<!-- Main Content Section -->
+<main>
+
+  <!-- General Information Section -->
+  <section class="general-info">
+    <h2>About the Major</h2>
+    <p>Computer Science at UCF provides a strong foundation in programming, algorithms, and system design, preparing students for careers in software development, cybersecurity, AI, and data science.</p>
+    <p>The program emphasizes hands-on experience through research, internships, and collaborative projects.</p>
+    <p>With access to state-of-the-art labs and industry partnerships, students gain real-world skills that make them competitive in the job market. UCF’s location in Florida’s growing tech hub offers excellent networking opportunities, and graduates are well-prepared for roles in leading companies, startups, or advanced studies.</p>
+  </section>
+
+  <!-- Flowchart Section -->
+  <section class="flowchart">
+    <h2>Computer Science Program Flowchart</h2>
+    <img src="csflowchart.jpg" alt="Computer Science Major Flowchart" style="max-width: 100%; height: auto;">
+  </section>
+
+  <!-- Major-Specific Classes Section -->
+  <section class="major-classes">
+    <h2>Major-Specific Classes</h2>
+    <div class="class">
+      <h3>Class 1: </h3>
+      <p>This course </p>
+    </div>
+    <div class="class">
+      <h3>Class 2: </h3>
+      <p>This course </p>
+    </div>
+    <div class="class">
+      <h3>Class 3: </h3>
+      <p>This course </p>
+    </div>
+  </section>
+
+  <table>
+    <tr>
+      <td class="column1">
+        <h2>Online Resources</h2>
+        <ul>
+          <li><a href="#">Study Tools and Websites</a></li>
+          <li><a href="https://www.ucf.edu/catalog/undergraduate/#/programs/SkbvEJ-_iO?bc=true&bcCurrent=Computer%20Science%20(B.S.)&bcGroup=College%20of%20Engineering%20and%20Computer%20Science&bcItemType=programs">Program Catalog</a></li>
+          <li><a href="https://www.cs.ucf.edu/wp-content/uploads/2024/09/CSIT-Elective-List-AY2024-2025.pdf">Approved Electives</a></li>
+        </ul>
+      </td>
+
+      <td class="column2">
+        <h2>Campus Resources</h2>
+        <ul>
+          <li><a href=""> UCF Computer Science Website</a></li>
+          <li><a href="https://academicsuccess.ucf.edu/ssa/academic-advising/">Contact Academic Advising</a></li>
+          <li><a href="https://career.ucf.edu/">Career Services and Internships</a></li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Video Playlists Section -->
+  <section class="video-playlists">
+    <h2>Video Playlists for Major Courses</h2>
+    <h3>Dynamics Playlist</h3>
+    <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/videoseries?si=TMQCRiu9wyxTQRI-&amp;list=PLOAuB8dR35od-BJkNaUWbT8naOb0Y_gC6"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+    </iframe>
+    <h3>Fluid Mechanics Playlist</h3>
+    <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/videoseries?si=wQVbr5jDNQ01PTdi&amp;list=PLOAuB8dR35oeOIPMOBH6hjwobuIJHPKSN"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+    </iframe>
+    <h3>Thermodynamics Playlist</h3>
+    <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/videoseries?si=QY_-8UmVmTrzXpYp&amp;list=PLISIF5ACui17dQ5VbzxNu9QtMnfKb856n"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+    </iframe>
+  </section>
+
+</main>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <p>Contact us for more information on the Computer Science program at UCF.</p>
+</footer>
+
+<script>
+  function applyDarkMode(isDarkMode) {
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+      document.getElementById("sidebar").classList.add("dark-mode");
+      document.getElementById("menuBtn").style.color = "white";
+    } else {
+      document.body.classList.remove("dark-mode");
+      document.getElementById("sidebar").classList.remove("dark-mode");
+      document.getElementById("menuBtn").style.color = "black";
+    }
+  }
+  document.getElementById("menuBtn").addEventListener("click", function(event) {
+    event.stopPropagation();
+    const sidebar = document.getElementById("sidebar");
+    sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
+  });
+  document.getElementById("darkModeToggle").addEventListener("click", function(event) {
+    event.preventDefault();
+    const isDark = document.body.classList.toggle("dark-mode");
+    document.getElementById("sidebar").classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", isDark);
+    document.getElementById("menuBtn").style.color = isDark ? "white" : "black";
+  });
+  function closeMenu(event) {
+    const sidebar = document.getElementById("sidebar");
+    if (!sidebar.contains(event.target) && event.target.id !== "menuBtn") {
+      sidebar.style.left = "-250px";
+    }
+  }
+</script>
+</body>
+</html>
