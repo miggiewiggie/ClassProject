@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us - Study Group Finder</title>
+  <title>About Us</title>
   <style>
     /* Global Styles */
     body {
@@ -25,11 +25,13 @@
     header {
       position: relative;
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      padding: 0.5rem;
-      background-color: transparent; /* Transparent header */
-      color: white;
+      background-color: #007bff; /* Blue background */
+      color: #ffffff;
+      padding: 10px 20px;
+      width: 100%;
+      overflow: hidden;
     }
     header.dark-mode {
       background-color: transparent;
@@ -38,11 +40,13 @@
       position: relative;
     }
     .menu-btn {
+      position: absolute;
+      left: 10px;
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 1.75rem; /* Larger icon */
-      z-index: 1001;
+      font-size: 1.75rem;
+      color: black;
       transition: color 0.3s ease;
     }
     .menu-btn:hover {
@@ -129,7 +133,6 @@
     
     /* Main Content (Cards Layout with Collapsible Details) */
     main {
-      flex: 1;
       padding: 2rem;
       text-align: center;
     }
@@ -273,35 +276,24 @@
 </head>
 <body>
   <header>
-    <nav>
-      <button class="menu-btn" id="menuBtn">☰</button>
-      <div class="sidebar" id="sidebar">
-        <a href="index.html">Home</a>
-        <a href="creategroup.html">Create Group</a>
-        <a href="groupcatalog.html">Group Catalog</a>
-        <a href="eventcalendar.html">Event Calendar</a>
-        <a href="about.html">About Us</a>
-        <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
-        <a href="help.html">Help</a>
-      </div>
-    </nav>
-    <div class="search-bar">
-      <input type="text" placeholder="Search for classes..." />
-    </div>
-    <div class="profile-container">
-      <span class="notification-bell">&#128276;</span>
-      <a href="login.html">
-        <img src="profile.png" alt="Login" class="login-button" />
-      </a>
-    </div>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <h1>About Us</h1>
   </header>
+  <nav>
+    <div class="sidebar" id="sidebar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="help.html">Help</a>
+      <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
+    </div>
+  </nav>
   
   <!-- Overlay for Sidebar -->
   <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
   
   <main>
-    <h1>About Us</h1>
-    <h2>Meet the Team</h2>
+    
+    <h1>Meet the Team</h1>
     <div class="cards-container">
       <!-- Victor's Card -->
       <div class="member-card">
