@@ -3,41 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Help - Study Group Finder</title>
+  <title>Engineering Study Guide Help</title>
   <style>
     /* Global Styles */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
       background-color: white;
-      color: #333;
       transition: background-color 0.3s, color 0.3s;
     }
     .dark-mode {
       background-color: #1a202c;
       color: white;
     }
-    
-     /* Header Section with Blue Background */
     header {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #007bff; /* Blue background */
+      background-color: #007bff;
       color: #ffffff;
       padding: 10px 20px;
       width: 100%;
       overflow: hidden;
-    }
-    header.dark-mode {
-      background-color: transparent;
-    }
-    nav {
-      position: relative;
     }
     .menu-btn {
       position: absolute;
@@ -49,53 +37,45 @@
       color: black;
       transition: color 0.3s ease;
     }
-    .menu-btn:hover {
-      text-decoration: underline;
+    .dark-mode .menu-btn {
+      color: white;
     }
-    
-    /* Sidebar Menu */
     .sidebar {
       position: fixed;
       top: 0;
-      left: -250px; /* Initially hidden */
+      left: -250px;
       width: 250px;
       height: 100%;
       background: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 0.25rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
-      z-index: 1000;
-      transition: left 0.3s ease;
       padding-top: 8rem;
+      transition: left 0.3s ease, background-color 0.3s ease;
     }
-    .sidebar.dark-mode {
-      background-color: #2d3748;
+    .dark-mode .sidebar {
+      background: #2d3748;
     }
     .sidebar a {
       padding: 1rem;
       text-decoration: none;
       color: black;
-      display: block;
       font-size: 1rem;
+    }
+    .dark-mode .sidebar a {
+      color: white;
     }
     .sidebar a:hover {
       background-color: #f1f1f1;
     }
-    .sidebar.dark-mode a {
-      color: white;
-    }
-    .sidebar.dark-mode a:hover {
+    .dark-mode .sidebar a:hover {
       background-color: #4a5568;
     }
-    
- 
-
-    /* Main Content for FAQ */
     main {
       padding: 2rem;
       text-align: center;
     }
+
     .faq-container {
       max-width: 600px;
       margin: 2rem auto;
@@ -144,17 +124,7 @@
       background-color: #2d3748;
       color: white;
     }
-    
-    /* Overlay for Sidebar */
-    .overlay.active-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-    }
+
   </style>
   <script>
     // Apply dark mode based on stored preference.
@@ -182,7 +152,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const isDarkMode = localStorage.getItem('darkMode') === 'true';
       applyDarkMode(isDarkMode);
-      updateProfilePhoto(); // Update the login button photo on page load.
+
       
       // Setup FAQ accordion behavior
       document.querySelectorAll('.faq-question').forEach(button => {
@@ -224,27 +194,27 @@
   <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
   
   <main>
-    <h1>Help</h1>
+
     <div class="faq-container">
       <!-- FAQ 1: Login Issues -->
       <div class="faq-item">
-        <button class="faq-question">I can't log in. What should I do?</button>
+        <button class="faq-question">What do I do if I dont see my specific major?</button>
         <div class="faq-answer">
-          <p>If you’re having trouble logging in, please try resetting your password by clicking the "Forgot Password" link on the login page. If the issue persists, make sure your email is verified.</p>
+          <p>If you cant find your specific major, there are different avenues to better understanding the material. Such as making an appointment with the <a href="https://academicsuccess.ucf.edu/sarc/">Student Academic Resource Center</a> to access support programs</p>
         </div>
       </div>
       <!-- FAQ 2: Password Reset -->
       <div class="faq-item">
-        <button class="faq-question">How do I reset my password?</button>
+        <button class="faq-question">Will these materials guarantee I do well in my major?</button>
         <div class="faq-answer">
-          <p>To reset your password, click the "Forgot Password" link on the login page and follow the instructions. You will receive an email with a reset link. If you don't see the email in your inbox, be sure to check your spam folder.</p>
+          <p>These are study aids meant to supplement your learning and help in finding assistance if additional materials are requested.</p>
         </div>
       </div>
       <!-- FAQ 3: Group Creation Issues -->
       <div class="faq-item">
-        <button class="faq-question">I'm having trouble creating a group. What should I do?</button>
+        <button class="faq-question">Is the website accessible from my phone?</button>
         <div class="faq-answer">
-          <p>Ensure you have filled out all required fields when creating a group. If the problem persists, try refreshing the page or logging out and back in. If you continue to face issues, please let us know.</p>
+          <p>Yes! The site is mobile-friendly. If issues are present, please report them to <a href="mailto:support@victorpena.xyz">support@victorpena.xyz</a>.</p>
         </div>
       </div>
       <!-- FAQ 4: General Troubleshooting -->
