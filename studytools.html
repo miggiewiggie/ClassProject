@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Engineering Study Guide Home</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #1a202c;
+      color: white;
+    }
+    /* Header Section with Blue Background */
+    header {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #007bff; /* Blue background */
+      color: #ffffff;
+      padding: 10px 20px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .menu-btn {
+      position: absolute;
+      left: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.75rem;
+      color: black;
+      transition: color 0.3s ease;
+    }
+    .dark-mode .menu-btn {
+      color: white;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      padding-top: 8rem;
+      transition: left 0.3s ease, background-color 0.3s ease;
+    }
+    .dark-mode .sidebar {
+      background: #2d3748;
+    }
+    .sidebar a {
+      padding: 1rem;
+      text-decoration: none;
+      color: black;
+      font-size: 1rem;
+    }
+    .dark-mode .sidebar a {
+      color: white;
+    }
+    .sidebar a:hover {
+      background-color: #f1f1f1;
+    }
+    .dark-mode .sidebar a:hover {
+      background-color: #4a5568;
+    }
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+    .studytools {
+      display: inline;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .studytools-item {
+      text-align: center;
+      background: #f7f7f7;
+      padding: 1rem;
+      border: 1px solid #cbd5e0;
+      border-radius: 5px;
+    }
+    .dark-mode .studytools-item {
+      background: #2d3748;
+      border-color: #4a5568;
+    }
+    .studytools-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+      border-radius: 5px;
+    }
+    .studytools-item a {
+      display: block;
+      text-decoration: none;
+      color: black;
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .dark-mode .studytools-item a {
+      color: white;
+    }
+  </style>
+</head>
+<body onload="applyDarkMode(localStorage.getItem('darkMode') === 'true')" onclick="closeMenu(event)">
+  <header>
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <h1>UCF Engineering Major Study Guide</h1>
+  </header>
+  <nav>
+    <div class="sidebar" id="sidebar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="help.html">Help</a>
+      <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
+    </div>
+  </nav>
+  <main>
+    <h1>Recommended Study Tools</h1>
+    <div class="studytools">
+      <div class="studytools-item">
+        <a href="https://quizlet.com/">
+            <h1>Quizlet</h1>
+          <img src="quizlet.jpg" alt="Quizlet Icon" />
+          
+        </a>
+        <h4>Learning and Memorization Tool</h4>
+      </div>
+  
+
+
+      <div class="studytools-item">
+        <a href="https://www.forestapp.cc/">
+            <h1>Forest App</h1>
+          <img src="forest.jpg" alt="ForestApp Icon" />
+          
+        </a>
+        <h4>Productivity and Time-Management Tool</h4>
+      </div>
+
+      
+      <div class="studytools-item">
+        <a href="https://habitica.com/static/home">
+            <h1>Habitica</h1>
+          <img src="habitica.jpg" alt="Habitica Icon" />
+          
+        </a>
+        <h4>Habit-building and Task Management Tool</h4>
+      </div>
+
+      
+      
+    </div>
+  </main>
+  <script>
+    function applyDarkMode(isDarkMode) {
+      if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+        document.getElementById("sidebar").classList.add("dark-mode");
+        document.getElementById("menuBtn").style.color = "white";
+      } else {
+        document.body.classList.remove("dark-mode");
+        document.getElementById("sidebar").classList.remove("dark-mode");
+        document.getElementById("menuBtn").style.color = "black";
+      }
+    }
+    document.getElementById("menuBtn").addEventListener("click", function(event) {
+      event.stopPropagation();
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
+    });
+    document.getElementById("darkModeToggle").addEventListener("click", function(event) {
+      event.preventDefault();
+      const isDark = document.body.classList.toggle("dark-mode");
+      document.getElementById("sidebar").classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", isDark);
+      document.getElementById("menuBtn").style.color = isDark ? "white" : "black";
+    });
+    function closeMenu(event) {
+      const sidebar = document.getElementById("sidebar");
+      if (!sidebar.contains(event.target) && event.target.id !== "menuBtn") {
+        sidebar.style.left = "-250px";
+      }
+    }
+  </script>
+</body>
+</html>
