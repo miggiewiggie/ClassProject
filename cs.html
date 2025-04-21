@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Computer Science at UCF</title>
+  <script>
+    // Apply dark mode immediately to prevent light flash
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark-mode');
+    }
+  </script>
+
   <style>
     /* Default Light Mode Styles */
     body {
@@ -18,37 +26,48 @@
       min-height: 100vh;
       flex-direction: column;
     }
-    .dark-mode{
+
+    .dark-mode body {
       background-color: #1a202c;
       color: white;
     }
-    h1, h2, h3 {
+
+
+    h2,
+    h3 {
       color: #000000;
     }
-    /* Centering the table */
-    table {
-      width: 60%; /* Adjust width as needed */
-      margin: auto; /* Centers the table */
-      border-collapse: collapse; /* Ensures a clean look */
-      text-align: center; /* Centers text in table */
+
+    .dark-mode h1,
+    .dark-mode h2,
+    .dark-mode h3 {
+      color: #ffffff;
     }
-    /* Styling table cells */
+
+    table {
+      width: 60%;
+      margin: auto;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
     td {
       border: 1px solid black;
-      padding: 20px; /* Adds spacing inside cells */
-      vertical-align: top; /* Aligns content to the top */
+      padding: 20px;
+      vertical-align: top;
     }
-    /* Header Section with Blue Background */
+
     header {
       position: relative;
       display: flex;
       justify-content: center;
-      background-color: #007bff; /* Blue background */
+      background-color: #007bff;
       color: #ffffff;
       padding: 10px 20px;
       align-items: center;
       width: 100%;
     }
+
     nav {
       position: absolute;
       left: 50px;
@@ -64,10 +83,12 @@
     h1 {
       margin: 0;
     }
+
     p {
       width: 100%;
       margin: 5px 0;
     }
+
     .menu-btn {
       background: none;
       border: none;
@@ -78,9 +99,11 @@
       color: black;
       transition: color 0.3s ease;
     }
+
     .dark-mode .menu-btn {
       color: white;
     }
+
     .sidebar {
       position: fixed;
       top: 0;
@@ -88,27 +111,32 @@
       width: 250px;
       height: 100%;
       background: white;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       display: flex;
       flex-direction: column;
       padding-top: 8rem;
       transition: left 0.3s ease, background-color 0.3s ease;
     }
+
     .dark-mode .sidebar {
       background: #2d3748;
     }
+
     .sidebar a {
       padding: 1rem;
       text-decoration: none;
       color: black;
       font-size: 1rem;
     }
+
     .dark-mode .sidebar a {
       color: white;
     }
+
     .sidebar a:hover {
       background-color: #f1f1f1;
     }
+
     .dark-mode .sidebar a:hover {
       background-color: #4a5568;
     }
@@ -129,12 +157,6 @@
       text-decoration: underline;
     }
 
-    /* Dark Mode Styles */
-
-    body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
-      color: #ffffff; /* Change header titles to white in dark mode */
-    }
-
     footer {
       background-color: #007bff;
       color: #000000;
@@ -143,7 +165,6 @@
       width: 100%;
     }
 
-    /* Section Styles */
     section {
       margin-bottom: 40px;
     }
@@ -162,150 +183,147 @@
     }
   </style>
 </head>
+
 <body onload="applyDarkMode(localStorage.getItem('darkMode') === 'true')" onclick="closeMenu(event)">
-<!-- Header Section -->
-<header class="header">
-  <nav>
-    <button class="menu-btn" id="menuBtn">☰</button>
-    <div class="sidebar" id="sidebar">
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="help.html">Help</a>
-      <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
+  <!-- Header Section -->
+  <header class="header">
+    <nav>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="help.html">Help</a>
+        <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
+      </div>
+    </nav>
+    <div class="title-container">
+      <h1>Computer Science at UCF</h1>
+      <p>Explore the Computer Science program at the University of Central Florida.</p>
     </div>
-  </nav>
-  <div class="title-container">
-    <h1>Computer Science at UCF</h1>
-    <p>Explore the Computer Science program at the University of Central Florida.</p>
-  </div>
 
-</header>
+  </header>
 
-<!-- Main Content Section -->
-<main>
+  <!-- Main Content Section -->
+  <main>
 
-  <!-- General Information Section -->
-  <section class="general-info">
-    <h2>About the Major</h2>
-    <p>Computer Science at UCF provides a strong foundation in programming, algorithms, and system design, preparing students for careers in software development, cybersecurity, AI, and data science.</p>
-    <p>The program emphasizes hands-on experience through research, internships, and collaborative projects.</p>
-    <p>With access to state-of-the-art labs and industry partnerships, students gain real-world skills that make them competitive in the job market. UCF’s location in Florida’s growing tech hub offers excellent networking opportunities, and graduates are well-prepared for roles in leading companies, startups, or advanced studies.</p>
-  </section>
+    <!-- General Information Section -->
+    <section class="general-info">
+      <h2>About the Major</h2>
+      <p>Computer Science at UCF provides a strong foundation in programming, algorithms, and system design, preparing
+        students for careers in software development, cybersecurity, AI, and data science.</p>
+      <p>The program emphasizes hands-on experience through research, internships, and collaborative projects.</p>
+      <p>With access to state-of-the-art labs and industry partnerships, students gain real-world skills that make them
+        competitive in the job market. UCF’s location in Florida’s growing tech hub offers excellent networking
+        opportunities, and graduates are well-prepared for roles in leading companies, startups, or advanced studies.
+      </p>
+    </section>
 
-  <!-- Flowchart Section -->
-  <section class="flowchart">
-    <h2>Computer Science Program Flowchart</h2>
-    <img src="csflowchart.jpg" alt="Computer Science Major Flowchart" style="max-width: 100%; height: auto;">
-  </section>
+    <!-- Flowchart Section -->
+    <section class="flowchart">
+      <h2>Computer Science Program Flowchart</h2>
+      <img src="csflowchart.jpg" alt="Computer Science Major Flowchart" style="max-width: 100%; height: auto;">
+    </section>
 
-  <!-- Major-Specific Classes Section -->
-  <section class="major-classes">
-    <h2>Major-Specific Classes</h2>
-    <div class="class">
-      <h3>Class 1: COT 3100C - Introduction to Discrete Structures</h3>
-      <p>This course introduces logic, set theory, combinatorics, and proofs. It can be challenging due to its abstract nature and heavy emphasis on problem-solving and mathematical reasoning.</p>
-    </div>
-    <div class="class">
-      <h3>Class 2: COP 3502C - Computer Science I</h3>
-      <p>This course covers programming fundamentals using C, including control structures, functions, arrays, and pointers. It can be demanding for beginners due to the steep learning curve and rigorous programming assignments.</p>
-    </div>
-    <div class="class">
-      <h3>Class 3: COP 3402 - Systems Software</h3>
-      <p>This course explores low-level software concepts such as assemblers, linkers, loaders, and compilers. It’s often considered difficult because of the in-depth look at how software interacts with hardware and the need for precision in low-level coding.</p>
-    </div>
-  </section>
+    <!-- Major-Specific Classes Section -->
+    <section class="major-classes">
+      <h2>Major-Specific Classes</h2>
+      <div class="class">
+        <h3>Class 1: COT 3100C - Introduction to Discrete Structures</h3>
+        <p>This course introduces logic, set theory, combinatorics, and proofs. It can be challenging due to its
+          abstract nature and heavy emphasis on problem-solving and mathematical reasoning.</p>
+      </div>
+      <div class="class">
+        <h3>Class 2: COP 3502C - Computer Science I</h3>
+        <p>This course covers programming fundamentals using C, including control structures, functions, arrays, and
+          pointers. It can be demanding for beginners due to the steep learning curve and rigorous programming
+          assignments.</p>
+      </div>
+      <div class="class">
+        <h3>Class 3: COP 3402 - Systems Software</h3>
+        <p>This course explores low-level software concepts such as assemblers, linkers, loaders, and compilers. It’s
+          often considered difficult because of the in-depth look at how software interacts with hardware and the need
+          for precision in low-level coding.</p>
+      </div>
+    </section>
 
-  <table>
-    <tr>
-      <td class="column1">
-        <h2>Online Resources</h2>
-        <ul>
-          <li><a href="studytools.html">Study Tools and Websites</a></li>
-          <li><a href="https://www.ucf.edu/catalog/undergraduate/#/programs/SkbvEJ-_iO?bc=true&bcCurrent=Computer%20Science%20(B.S.)&bcGroup=College%20of%20Engineering%20and%20Computer%20Science&bcItemType=programs">Program Catalog</a></li>
-          <li><a href="https://www.cs.ucf.edu/wp-content/uploads/2024/09/CSIT-Elective-List-AY2024-2025.pdf">Approved Electives</a></li>
-        </ul>
-      </td>
+    <table>
+      <tr>
+        <td class="column1">
+          <h2>Online Resources</h2>
+          <ul>
+            <li><a href="studytools.html">Study Tools and Websites</a></li>
+            <li><a
+                href="https://www.ucf.edu/catalog/undergraduate/#/programs/SkbvEJ-_iO?bc=true&bcCurrent=Computer%20Science%20(B.S.)&bcGroup=College%20of%20Engineering%20and%20Computer%20Science&bcItemType=programs">Program
+                Catalog</a></li>
+            <li><a href="https://www.cs.ucf.edu/wp-content/uploads/2024/09/CSIT-Elective-List-AY2024-2025.pdf">Approved
+                Electives</a></li>
+          </ul>
+        </td>
 
-      <td class="column2">
-        <h2>Campus Resources</h2>
-        <ul>
-          <li><a href="https://www.ucf.edu/degree/computer-science-bs/"> UCF Computer Science Website</a></li>
-          <li><a href="https://academicsuccess.ucf.edu/ssa/academic-advising/">Contact Academic Advising</a></li>
-          <li><a href="https://career.ucf.edu/">Career Services and Internships</a></li>
-        </ul>
-      </td>
-    </tr>
-  </table>
+        <td class="column2">
+          <h2>Campus Resources</h2>
+          <ul>
+            <li><a href="https://www.ucf.edu/degree/computer-science-bs/"> UCF Computer Science Website</a></li>
+            <li><a href="https://academicsuccess.ucf.edu/ssa/academic-advising/">Contact Academic Advising</a></li>
+            <li><a href="https://career.ucf.edu/">Career Services and Internships</a></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
 
-  <!-- Video Playlists Section -->
-  <section class="video-playlists">
-    <h2>Video Playlists for Major Courses</h2>
-    <h3>Discrete Mathematics Playlist</h3>
-    <iframe width="560" height="315"
-      src="https://www.youtube.com/embed/videoseries?list=PLBlnK6fEyqRhqJPDXcvYlLfXPh37L89g3" 
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen>
+    <!-- Video Playlists Section -->
+    <section class="video-playlists">
+      <h2>Video Playlists for Major Courses</h2>
+      <h3>Discrete Mathematics Playlist</h3>
+      <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/videoseries?list=PLBlnK6fEyqRhqJPDXcvYlLfXPh37L89g3"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
       </iframe>
-    <h3>Computer Science 1 Playlist</h3>
-    <iframe width="560" 
-      height="315" src="https://www.youtube.com/embed/videoseries?list=PLA1FTfKBAEX4hblYoH6mnq0zsie2w6Wif" 
-      title="YouTube video player"
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen>
+      <h3>Computer Science 1 Playlist</h3>
+      <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/videoseries?list=PLA1FTfKBAEX4hblYoH6mnq0zsie2w6Wif"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
       </iframe>
-    <h3>Systems Software Playlist</h3>
-    <iframe width="560"
-      height="315" src="https://www.youtube.com/embed/videoseries?list=PL4gu8xQu0_5J8yriweSvyLSCoFi1AKH8c"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin" 
-      allowfullscreen>
+      <h3>Systems Software Playlist</h3>
+      <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/videoseries?list=PL4gu8xQu0_5J8yriweSvyLSCoFi1AKH8c"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
       </iframe>
-  </section>
+    </section>
 
-</main>
+  </main>
 
-<!-- Footer Section -->
-<footer class="footer">
-  <p>Contact us for more information on the Computer Science program at UCF.</p>
-</footer>
+  <!-- Footer Section -->
+  <footer class="footer">
+    <p>Contact us for more information on the Computer Science program at UCF.</p>
+  </footer>
 
-<script>
-  function applyDarkMode(isDarkMode) {
-    if (isDarkMode) {
-      document.body.classList.add("dark-mode");
-      document.getElementById("sidebar").classList.add("dark-mode");
-      document.getElementById("menuBtn").style.color = "white";
-    } else {
-      document.body.classList.remove("dark-mode");
-      document.getElementById("sidebar").classList.remove("dark-mode");
-      document.getElementById("menuBtn").style.color = "black";
+  <script>
+    document.getElementById("menuBtn").addEventListener("click", function (event) {
+      event.stopPropagation();
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
+    });
+
+    document.getElementById("darkModeToggle").addEventListener("click", function (event) {
+      event.preventDefault();
+      const isDark = document.documentElement.classList.toggle("dark-mode");
+      localStorage.setItem('darkMode', isDark);
+    });
+
+    function closeMenu(event) {
+      const sidebar = document.getElementById("sidebar");
+      if (!event.target.closest('#sidebar') && sidebar.style.left === "0px") {
+        sidebar.style.left = "-250px";
+      }
     }
-  }
-  document.getElementById("menuBtn").addEventListener("click", function(event) {
-    event.stopPropagation();
-    const sidebar = document.getElementById("sidebar");
-    sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
-  });
-  document.getElementById("darkModeToggle").addEventListener("click", function(event) {
-    event.preventDefault();
-    const isDark = document.body.classList.toggle("dark-mode");
-    document.getElementById("sidebar").classList.toggle("dark-mode");
-    localStorage.setItem("darkMode", isDark);
-    document.getElementById("menuBtn").style.color = isDark ? "white" : "black";
-  });
-  function closeMenu(event) {
-    const sidebar = document.getElementById("sidebar");
-    if (!sidebar.contains(event.target) && event.target.id !== "menuBtn") {
-      sidebar.style.left = "-250px";
-    }
-  }
-</script>
+  </script>
 </body>
+
 </html>

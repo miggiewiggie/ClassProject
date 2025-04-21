@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aerospace Engineering at UCF</title>
+  <script>
+    // Apply dark mode immediately to prevent light flash
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.documentElement.classList.add('dark-mode');
+    }
+  </script>
+
   <style>
     /* Default Light Mode Styles */
     body {
@@ -18,37 +26,48 @@
       min-height: 100vh;
       flex-direction: column;
     }
-    .dark-mode{
+
+    .dark-mode body {
       background-color: #1a202c;
       color: white;
     }
-    h1, h2, h3 {
+
+
+    h2,
+    h3 {
       color: #000000;
     }
-    /* Centering the table */
-    table {
-      width: 60%; /* Adjust width as needed */
-      margin: auto; /* Centers the table */
-      border-collapse: collapse; /* Ensures a clean look */
-      text-align: center; /* Centers text in table */
+
+    .dark-mode h1,
+    .dark-mode h2,
+    .dark-mode h3 {
+      color: #ffffff;
     }
-    /* Styling table cells */
+
+    table {
+      width: 60%;
+      margin: auto;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
     td {
       border: 1px solid black;
-      padding: 20px; /* Adds spacing inside cells */
-      vertical-align: top; /* Aligns content to the top */
+      padding: 20px;
+      vertical-align: top;
     }
-    /* Header Section with Blue Background */
+
     header {
       position: relative;
       display: flex;
       justify-content: center;
-      background-color: #007bff; /* Blue background */
+      background-color: #007bff;
       color: #ffffff;
       padding: 10px 20px;
       align-items: center;
       width: 100%;
     }
+
     nav {
       position: absolute;
       left: 50px;
@@ -64,10 +83,12 @@
     h1 {
       margin: 0;
     }
+
     p {
       width: 100%;
       margin: 5px 0;
     }
+
     .menu-btn {
       background: none;
       border: none;
@@ -78,9 +99,11 @@
       color: black;
       transition: color 0.3s ease;
     }
+
     .dark-mode .menu-btn {
       color: white;
     }
+
     .sidebar {
       position: fixed;
       top: 0;
@@ -88,27 +111,32 @@
       width: 250px;
       height: 100%;
       background: white;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       display: flex;
       flex-direction: column;
       padding-top: 8rem;
       transition: left 0.3s ease, background-color 0.3s ease;
     }
+
     .dark-mode .sidebar {
       background: #2d3748;
     }
+
     .sidebar a {
       padding: 1rem;
       text-decoration: none;
       color: black;
       font-size: 1rem;
     }
+
     .dark-mode .sidebar a {
       color: white;
     }
+
     .sidebar a:hover {
       background-color: #f1f1f1;
     }
+
     .dark-mode .sidebar a:hover {
       background-color: #4a5568;
     }
@@ -129,12 +157,6 @@
       text-decoration: underline;
     }
 
-    /* Dark Mode Styles */
-
-    body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
-      color: #ffffff; /* Change header titles to white in dark mode */
-    }
-
     footer {
       background-color: #007bff;
       color: #000000;
@@ -143,7 +165,6 @@
       width: 100%;
     }
 
-    /* Section Styles */
     section {
       margin-bottom: 40px;
     }
@@ -162,150 +183,151 @@
     }
   </style>
 </head>
+
 <body onload="applyDarkMode(localStorage.getItem('darkMode') === 'true')" onclick="closeMenu(event)">
-<!-- Header Section -->
-<header class="header">
-  <nav>
-    <button class="menu-btn" id="menuBtn">☰</button>
-    <div class="sidebar" id="sidebar">
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="help.html">Help</a>
-      <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
+  <!-- Header Section -->
+  <header class="header">
+    <nav>
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="help.html">Help</a>
+        <a href="#" id="darkModeToggle">Dark Mode / Light Mode</a>
+      </div>
+    </nav>
+    <div class="title-container">
+      <h1>Aerospace Engineering at UCF</h1>
+      <p>Explore the Aerospace Engineering program at the University of Central Florida.</p>
     </div>
-  </nav>
-  <div class="title-container">
-    <h1>Aerospace Engineering at UCF</h1>
-    <p>Explore the Aerospace Engineering program at the University of Central Florida.</p>
-  </div>
 
-</header>
+  </header>
 
-<!-- Main Content Section -->
-<main>
+  <!-- Main Content Section -->
+  <main>
 
-  <!-- General Information Section -->
-  <section class="general-info">
-    <h2>About the Major</h2>
-    <p>Aerospace Engineering at UCF is a dynamic field focusing on the design, development, and testing of aircraft and spacecraft. The program equips students with the skills to innovate and solve complex problems in the world of aviation and space exploration.</p>
-    <p>UCF's Aerospace Engineering program prepares students to become leaders in the aerospace industry. The curriculum covers areas like aerodynamics, propulsion, flight mechanics, and materials science, providing a comprehensive foundation for future engineers.</p>
-  </section>
+    <!-- General Information Section -->
+    <section class="general-info">
+      <h2>About the Major</h2>
+      <p>Aerospace Engineering at UCF is a dynamic field focusing on the design, development, and testing of aircraft
+        and spacecraft. The program equips students with the skills to innovate and solve complex problems in the world
+        of aviation and space exploration.</p>
+      <p>UCF's Aerospace Engineering program prepares students to become leaders in the aerospace industry. The
+        curriculum covers areas like aerodynamics, propulsion, flight mechanics, and materials science, providing a
+        comprehensive foundation for future engineers.</p>
+    </section>
 
-  <!-- Flowchart Section -->
-  <section class="flowchart">
-    <h2>Program Flowchart</h2>
-    <img src="aerospaceflowchart.jpg" alt="Aerospace Engineering Major Flowchart" style="max-width: 100%; height: auto;">
-  </section>
+    <!-- Flowchart Section -->
+    <section class="flowchart">
+      <h2>Program Flowchart</h2>
+      <img src="aerospaceflowchart.jpg" alt="Aerospace Engineering Major Flowchart"
+        style="max-width: 100%; height: auto;">
+    </section>
 
-  <!-- Major-Specific Classes Section -->
-  <section class="major-classes">
-    <h2>Major-Specific Classes</h2>
-    <div class="class">
-      <h3>Class 1: Class 1: EAS 3101 - Fundamentals of Aerodynamics</h3>
-      <p>This course focuses on the behavior of air as it flows over surfaces, including airfoils and wings. It introduces fluid dynamics concepts and can be challenging due to the mathematical rigor and physical intuition required.</p>
-    </div>
-    <div class="class">
-      <h3>Class 2: EGM 3601 - Solid Mechanics</h3>
-      <p>This course focuses on the behavior of solid materials under various forces, such as tension, compression, and torsion. Students often find it tough because of the mathematical modeling and stress-strain analysis involved.</p>
-    </div>
-    <div class="class">
-      <h3>Class 3: EAS 4700C - Engineering Design 1</h3>
-      <p>This is the first part of a senior design sequence where students work in teams to develop an aerospace system or component. The course involves project planning, preliminary design, and feasibility analysis. It's challenging due to the need for teamwork, creativity, and applying accumulated knowledge from previous courses.</p>
-    </div>
-  </section>
+    <!-- Major-Specific Classes Section -->
+    <section class="major-classes">
+      <h2>Major-Specific Classes</h2>
+      <div class="class">
+        <h3>Class 1: Class 1: EAS 3101 - Fundamentals of Aerodynamics</h3>
+        <p>This course focuses on the behavior of air as it flows over surfaces, including airfoils and wings. It
+          introduces fluid dynamics concepts and can be challenging due to the mathematical rigor and physical intuition
+          required.</p>
+      </div>
+      <div class="class">
+        <h3>Class 2: EGM 3601 - Solid Mechanics</h3>
+        <p>This course focuses on the behavior of solid materials under various forces, such as tension, compression,
+          and torsion. Students often find it tough because of the mathematical modeling and stress-strain analysis
+          involved.</p>
+      </div>
+      <div class="class">
+        <h3>Class 3: EAS 4700C - Engineering Design 1</h3>
+        <p>This is the first part of a senior design sequence where students work in teams to develop an aerospace
+          system or component. The course involves project planning, preliminary design, and feasibility analysis. It's
+          challenging due to the need for teamwork, creativity, and applying accumulated knowledge from previous
+          courses.</p>
+      </div>
+    </section>
 
-  <table>
-    <tr>
-      <td class="column1">
-        <h2>Online Resources</h2>
-        <ul>
-          <li><a href="studytools.html">Study Tools and Websites</a></li>
-          <li><a href="https://www.ucf.edu/catalog/undergraduate/#/programs/SJlLFjn3u?group=College%20of%20Engineering%20and%20Computer%20Science&bc=true&bcCurrent=College%20of%20Engineering%20and%20Computer%20Science&bcItemType=programs&bc=true&bcCurrent=Aerospace%20Engineering%20(B.S.A.E.)&bcGroup=College%20of%20Engineering%20and%20Computer%20Science&bcItemType=programs">Program Catalog</a></li>
-          <li><a href="https://mae.ucf.edu/advising/wp-content/uploads/2024/07/Approved-Technical-Electives-06-19-24.pdf">Approved Electives</a></li>
-        </ul>
-      </td>
+    <table>
+      <tr>
+        <td class="column1">
+          <h2>Online Resources</h2>
+          <ul>
+            <li><a href="studytools.html">Study Tools and Websites</a></li>
+            <li><a
+                href="https://www.ucf.edu/catalog/undergraduate/#/programs/SJlLFjn3u?group=College%20of%20Engineering%20and%20Computer%20Science&bc=true&bcCurrent=College%20of%20Engineering%20and%20Computer%20Science&bcItemType=programs&bc=true&bcCurrent=Aerospace%20Engineering%20(B.S.A.E.)&bcGroup=College%20of%20Engineering%20and%20Computer%20Science&bcItemType=programs">Program
+                Catalog</a></li>
+            <li><a
+                href="https://mae.ucf.edu/advising/wp-content/uploads/2024/07/Approved-Technical-Electives-06-19-24.pdf">Approved
+                Electives</a></li>
+          </ul>
+        </td>
 
-      <td class="column2">
-        <h2>Campus Resources</h2>
-        <ul>
-          <li><a href="https://www.ucf.edu/degree/aerospace-engineering-bsae/"> UCF Aerospace Engineering Website</a></li>
-          <li><a href="https://academicsuccess.ucf.edu/ssa/academic-advising/">Contact Academic Advising</a></li>
-          <li><a href="https://career.ucf.edu/">Career Services and Internships</a></li>
-        </ul>
-      </td>
-    </tr>
-  </table>
+        <td class="column2">
+          <h2>Campus Resources</h2>
+          <ul>
+            <li><a href="https://www.ucf.edu/degree/aerospace-engineering-bsae/"> UCF Aerospace Engineering Website</a>
+            </li>
+            <li><a href="https://academicsuccess.ucf.edu/ssa/academic-advising/">Contact Academic Advising</a></li>
+            <li><a href="https://career.ucf.edu/">Career Services and Internships</a></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
 
-  <!-- Video Playlists Section -->
-  <section class="video-playlists">
-    <h2>Video Playlists for Major Courses</h2>
-    <h3>Aerodynamics Playlist</h3>
-    <iframe width="560" height="315"
-            src="https://www.youtube.com/embed/videoseries?list=PL0zm0AQWpaubrqOSLcTtukhk0411Y-cFV"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-    </iframe>
-    <h3>Solid Mechanics Playlist</h3>
-    <iframe width="560" height="315"
-            src="https://www.youtube.com/embed/videoseries?list=PLOAuB8dR35oft2ZLc1sHseypNMAiG_TeJ"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-    </iframe>
-    <h3>Engineering Design 1 Playlist</h3>
-    <iframe width="560" height="315"
-            src="https://www.youtube.com/embed/videoseries?list=PLxWci8LYzHEi5iCkacnObfi1JGZXmNvbH"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-    </iframe>
-  </section>
+    <!-- Video Playlists Section -->
+    <section class="video-playlists">
+      <h2>Video Playlists for Major Courses</h2>
+      <h3>Aerodynamics Playlist</h3>
+      <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/videoseries?list=PL0zm0AQWpaubrqOSLcTtukhk0411Y-cFV"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+      </iframe>
+      <h3>Solid Mechanics Playlist</h3>
+      <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/videoseries?list=PLOAuB8dR35oft2ZLc1sHseypNMAiG_TeJ"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+      </iframe>
+      <h3>Engineering Design 1 Playlist</h3>
+      <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/videoseries?list=PLxWci8LYzHEi5iCkacnObfi1JGZXmNvbH"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+      </iframe>
+    </section>
 
-</main>
+  </main>
 
-<!-- Footer Section -->
-<footer class="footer">
-  <p>Contact us for more information on the Aerospace Engineering program at UCF.</p>
-</footer>
+  <!-- Footer Section -->
+  <footer class="footer">
+    <p>Contact us for more information on the Aerospace Engineering program at UCF.</p>
+  </footer>
 
-<script>
-  function applyDarkMode(isDarkMode) {
-    if (isDarkMode) {
-      document.body.classList.add("dark-mode");
-      document.getElementById("sidebar").classList.add("dark-mode");
-      document.getElementById("menuBtn").style.color = "white";
-    } else {
-      document.body.classList.remove("dark-mode");
-      document.getElementById("sidebar").classList.remove("dark-mode");
-      document.getElementById("menuBtn").style.color = "black";
+  <script>
+    document.getElementById("menuBtn").addEventListener("click", function (event) {
+      event.stopPropagation();
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
+    });
+
+    document.getElementById("darkModeToggle").addEventListener("click", function (event) {
+      event.preventDefault();
+      const isDark = document.documentElement.classList.toggle("dark-mode");
+      localStorage.setItem('darkMode', isDark);
+    });
+
+    function closeMenu(event) {
+      const sidebar = document.getElementById("sidebar");
+      if (!event.target.closest('#sidebar') && sidebar.style.left === "0px") {
+        sidebar.style.left = "-250px";
+      }
     }
-  }
-  document.getElementById("menuBtn").addEventListener("click", function(event) {
-    event.stopPropagation();
-    const sidebar = document.getElementById("sidebar");
-    sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
-  });
-  document.getElementById("darkModeToggle").addEventListener("click", function(event) {
-    event.preventDefault();
-    const isDark = document.body.classList.toggle("dark-mode");
-    document.getElementById("sidebar").classList.toggle("dark-mode");
-    localStorage.setItem("darkMode", isDark);
-    document.getElementById("menuBtn").style.color = isDark ? "white" : "black";
-  });
-  function closeMenu(event) {
-    const sidebar = document.getElementById("sidebar");
-    if (!sidebar.contains(event.target) && event.target.id !== "menuBtn") {
-      sidebar.style.left = "-250px";
-    }
-  }
-</script>
+  </script>
 </body>
-</html>
 
+</html>
